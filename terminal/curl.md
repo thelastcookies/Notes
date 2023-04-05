@@ -1,8 +1,9 @@
-# 🥦 curl - General Terminal Commands
+# 🥦 curl - Command line tool and library for transferring data with URLs 
+
 ![curl-logo.svg](../static/images/curl--logo.svg)
 ##  什么是curl？
 `curl`是开源项目**cURL**的产品之一。
-旨在基于网络协议，通过命令行的简单指令，使用指定的协议，对指定URL进行网络传输。
+旨在基于网络协议，通过命令行的简单指令，使用指定的协议，对指定URL进行数据传输。
 
 
 ##  curl支持的协议
@@ -53,12 +54,14 @@ $ curl [options / URLs]
   $ curl -F profile=@portrait.jpg https://example.com/upload.cgi
   $ curl -F "story=<hugefile.txt" https://example.com/
   ```
+
 ## 重定向
 `-L, --location` 如果服务器报告请求的页面已移动到不同的位置（即返回状态码 3XX），
 此选项将使 curl 在新位置重新请求。
 ```
 curl -L https://example.com
 ```
+
 ## 文件传输
 - #### `-O, --remote-name`/`-o, --output <file>`下载。
   ```
@@ -123,9 +126,11 @@ curl -L https://example.com
   Time Left - 预计完成时间
   Curr.Speed - 最后 5 秒的平均传输速度（传输的前 5 秒当然是基于较短的时间。）
   ```
+
 ## 使用密码
 `-u, --user <user:password>`
 可以在`HTTP`、`FTP`等协议里使用下述两种方式来进行用户验证。
+
 ```
 curl ftp://name:passwd@machine.domain:port/full/path/to/file
 curl -u name:passwd ftp://machine.domain:port/full/path/to/file
@@ -143,6 +148,7 @@ $ curl -v https://example.com
 其中，以`>`开头的行表示`Request Headers`，以`<`开头的行表示`Response Headers`，以`*`开头的行表示`curl`提供的附加信息。
 
 另外，`-i, --include` 用于只查看 `Response Headers`。`-D, --dump-header <filename>` 用于将`Response Headers`写入指定文件进行存档。
+
 ```
 $ curl -i https://example.com
 $ curl --D store.txt https://example.com
@@ -152,6 +158,7 @@ $ curl --D store.txt https://example.com
 `-x, --proxy [protocol://]host[:port]` 使用指定的代理。
 
 可以使用`protocol://`前缀指定代理字符串，默认为 HTTP 代理。
+
 ```
 $ curl --proxy http://proxy.example https://example.com
 $ curl -x my-proxy:888 ftp://ftp.leachsite.com/README
