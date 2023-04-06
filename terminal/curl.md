@@ -1,4 +1,4 @@
-# 🥦 curl - Command line tool and library for transferring data with URLs 
+# 🥦 curl - Command Line Tool and Library for Transferring Data with URLs 
 
 ![curl-logo.svg](../static/images/curl--logo.svg)
 ##  什么是curl？
