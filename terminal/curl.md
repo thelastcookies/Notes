@@ -59,7 +59,7 @@ $ curl [options / URLs]
 `-L, --location` 如果服务器报告请求的页面已移动到不同的位置（即返回状态码 3XX），
 此选项将使 curl 在新位置重新请求。
 ```
-curl -L https://example.com
+$ curl -L https://example.com
 ```
 
 ## 文件传输
@@ -82,8 +82,8 @@ curl -L https://example.com
   如果上传的 URL 以 `/` 结尾，curl会认为该URL中没有指定文件名，将提交本地文件名作为远程文件名。 
   如果上传的 URL 以其他名称结尾，curl 会将最后一个目录名作为要使用的远程文件名。
   ```
-  curl -T file https://example.com
-  curl -T "img[1-1000].png" ftp://ftp.example.com/
+  $ curl -T file https://example.com
+  $ curl -T "img[1-1000].png" ftp://ftp.example.com/
   ```
   **HTTP 文件上传：**
   服务器需要接受 PUT 请求，然后成功上传。
@@ -132,10 +132,10 @@ curl -L https://example.com
 可以在`HTTP`、`FTP`等协议里使用下述两种方式来进行用户验证。
 
 ```
-curl ftp://name:passwd@machine.domain:port/full/path/to/file
-curl -u name:passwd ftp://machine.domain:port/full/path/to/file
-curl http://name:passwd@machine.domain/full/path/to/file
-curl -u name:passwd http://machine.domain/full/path/to/file
+$ curl ftp://name:passwd@machine.domain:port/full/path/to/file
+$ curl -u name:passwd ftp://machine.domain:port/full/path/to/file
+$ curl http://name:passwd@machine.domain/full/path/to/file
+$ curl -u name:passwd http://machine.domain/full/path/to/file
 ```
 
 ## 详细信息：
