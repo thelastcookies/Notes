@@ -1,7 +1,7 @@
 # 🥦 curl - Command Line Tool and Library for Transferring Data with URLs 
 
 ![curl-logo.svg](../static/images/curl--logo.svg)
-##  什么是curl？
+##  什么是 curl ？
 `curl`是开源项目**cURL**的产品之一。
 旨在基于网络协议，通过命令行的简单指令，使用指定的协议，对指定URL进行数据传输。
 

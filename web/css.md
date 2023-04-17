@@ -2,7 +2,7 @@
 
  ![css-logo.jpg](../static/images/css--logo.jpg)
 
-## 什么是CSS
+## 什么是 CSS ？
 CSS是用来为 HTML 文档添加样式的语言，描述了 HTML 元素应如何显示。
 
 ## 层叠次序
@@ -108,7 +108,7 @@ p.important {...}
 可以用`.important.warning`来为此选择器设置样式
 
 
-## CSS 属性选择器
+### 属性选择器
 对带有指定属性的 HTML 元素设置样式。
 也就是说属性选择器影响到的都是元素中规定了指定属性的元素。
 
@@ -180,7 +180,7 @@ img[title~="Figure"] {...}
 这种结构是给lang属性中凡是有en开头的元素设定样式。适用于由"-"分隔的属性值。
 
 
-## CSS 子元素选择器
+### 子元素选择器
 子元素选择器只能选择作为某元素子元素的元素.
 以 `>` 来定义
 ```css
@@ -189,7 +189,7 @@ p strong {...}
 可以结合其他选择器使用。
 
 
-## CSS 相邻兄弟选择器
+### 相邻兄弟选择器
 可选择紧接在另一元素后的元素，且两个有相同的父元素，以"+"来定义。
 ```css
 h1 + p {...}
@@ -198,7 +198,7 @@ h1 + p {...}
 可以结合其他选择器使用。
 
 
-## CSS 选择器优先级
+### 选择器优先级
 #### 特指度
 
 特指度表示一个css选择器表达式的重要程度，可以通过一个公式来计算出一个数值，数越大，越重要。
@@ -213,7 +213,7 @@ h1 + p {...}
 还有，当前设置的样式，优先级高于从父辈继承来的样式
 
 
-## CSS 伪类
+### 伪类
 用于向某些选择器添加特殊的效果
 ```css
 selector :pseudo-class {...}
@@ -241,7 +241,7 @@ selector :pseudo-class {...}
 
   :lang 伪类使你有能力为不同的语言定义特殊的规则。
 
-## CSS 伪元素
+### 伪元素
 用于向某些选择器设置特殊效果。
 ```css
 selector:pseudo-element {...}
@@ -264,7 +264,7 @@ selector:pseudo-element {...}
 - `::before ::after`
   可以在元素的内容前后插入新内容。
 
-## CSS 插入样式
+## 样式引入
 ### 外部样式表
 ```html
 <head>
@@ -293,7 +293,7 @@ This is a paragraph
 颜色属性将继承于外部样式表，而文字排列（text-alignment）和字体尺寸（font-size）会被内部样式表中的规则取代。
 
 
-## CSS 背景
+## 背景
 ### 背景色 
 `background-color`
 
@@ -321,9 +321,9 @@ This is a paragraph
 指定背景图片的原点位置（背景定位区域）。
 
 参数：
-- padding-box 背景设定从 padding-box 开始，默认值
-- border-box 背景设定从 border-box 开始
-- content-box 背景设定从 content-box 开始
+- padding-box 相对于内边距框定位，默认值
+- border-box 相对于边框盒定位
+- content-box 相对于内容框定位
 
 ### 背景定位
 `background-position`
@@ -339,8 +339,8 @@ This is a paragraph
 
 参数：
 - auto
-- length	
-- percentage
+- length 设置宽高
+- percentage 设置宽高
 - cover 将背景图片调整大小以覆盖整个容器，即使需要拉伸图像或在其中一个边缘略微裁剪。
 - contain 调整背景图片大小以确保图像完全可见。
 
@@ -351,8 +351,49 @@ This is a paragraph
 - scroll 随文档滚动，默认值
 - fixed 对可视区固定 
 
+### 背景绘制区域
+`background-clip`
 
-## CSS 文本
+参数：
+
+- border-box: 背景被裁剪到边框盒
+- padding-box: 背景被裁剪到内边距框
+- content-box: 背景被裁剪到内容框
+  相当于指定从哪里开始可以显示背景色和背景图片
+
+### 多重背景
+```css
+background-image: url(bg_flower.gif), url(bg_flower_2.gif);
+```
+
+### 渐变
+#### `linear-gradient` 线性渐变
+
+- `<side-or-corner>`
+描述渐变线的起始点位置。它包含 to 和两个关键词：第一个指出水平位置 left or right，第二个指出垂直位置 top or bottom。关键词的先后顺序无影响，且都是可选的。 to top, to bottom, to left 和 to right 这些值会被转换成角度 0 度、180 度、270 度和 90 度。其余值会被转换为一个以向顶部中央方向为起点顺时针旋转的角度。渐变线的结束点与其起点中心对称。
+
+- `<angle>`
+用角度值指定渐变的方向（或角度）。角度顺时针增加。
+
+- `<linear-color-stop>`
+由一个<color>值组成，并且跟随着一个可选的终点位置（可以是一个百分比值或者是沿着渐变轴的<length>）。CSS 渐变的颜色渲染采取了与 SVG 相同的规则。
+
+- `<color-hint>`
+颜色中转点是一个插值提示，它定义了在相邻颜色之间渐变如何进行。长度定义了在两种颜色之间的哪个点停止渐变颜色应该达到颜色过渡的中点。如果省略，颜色转换的中点是两个颜色停止之间的中点。
+
+#### `radial-gradient` 径向渐变
+
+- `<position>` 与 background-position 或者 transform-origin 类似。如果没有指定，默认为中心点。
+
+- `<ending-shape>` 渐变结束时的形状。圆形（渐变的形状是一个半径不变的正圆）或椭圆形（轴对称椭圆）。默认值为椭圆。
+
+- `<size>` 确定渐变结束形状的大小。如果省略，则默认为最远角。它可以显式给出，也可以通过关键字给出。出于关键字定义的目的，将梯度框边缘视为在两个方向上无限延伸，而不是有限线段。
+
+- `<linear-color-stop>` 色值结束点（color stop）的 <color> 值，后跟一个或两个可选的停止位置（沿渐变轴的 <percentage> 或 <length>）。0% 的百分比，或者 0 的长度，代表渐变的中心；值 100% 表示结束形状与虚拟渐变射线的交点。两者之间的百分比值线性定位在梯度射线上。包括两个停止位置相当于在两个位置声明了两个颜色相同的色值结束点。
+
+- `<color-hint>` color-hint 是一个插值提示，定义了相邻色标之间的渐变如何进行。长度定义了两种颜色之间的哪个点渐变颜色应该到达颜色过渡的中点。如果省略，颜色过渡的中点是两个色值结束点之间的中点。
+
+## 文本
 ### 缩进文本
 `text-indent`
 
@@ -435,8 +476,37 @@ letter-spacing 与 word-spacing的区别
 
 参数：长度值 百分数值
 
+## CSS3 文本效果
+`text-shadow` 文字阴影
 
-## CSS 字体
+参数：
+h-shadow 必需。水平阴影的位置。允许负值。
+v-shadow必需。垂直阴影的位置。允许负值。
+blur可选。模糊的距离。
+color 可选。阴影的颜色。参阅 CSS 颜色值。
+
+`word-wrap` 截断长单词
+
+参数：
+normal: 默认
+break-word: 截断
+
+`word-break`
+
+参数：
+normal: 使用浏览器默认的换行规则。
+break-all: 允许在单词内换行。
+keep-all: 只能在半角空格或连字符处换行。
+
+`text-overflow`
+
+参数：
+clip: 修剪文本
+ellipsis: 用省略号代替被修建文本
+string: 用指定的该字符串代替被修剪文本
+
+## 字体
+
 ### 指定字体
 `font-family`
 
@@ -465,58 +535,33 @@ letter-spacing 与 word-spacing的区别
 
 参数：像素 em(推荐) 百分数值
 
+
+## CSS3 字体
+`@font-face`
+
+语法：
+```css
+@font-face {
+    font-family: . . .;
+    src: url('...'),
+    url('...');
+}
+```
+
+参数：
+- font-family 必需。规定字体的名称。
+- src 必需。定义字体文件的 URL。
+- font-stretch 拉伸字体
+- font-style 字体样式
+- font-weight 字体粗细
+
+
 ## CSS 列表
-### 列表样式 (列表前的点)
-
-`list-style-type`
-
-参数：none disc circle square decimal ......
-
-### 列表项图像
-
-`list-style-image`
-
-参数：url(...)
-
-### 列表标志位置
-
-`list-style-position`
-
-参数：inside outside
+略
 
 
 ## CSS 表格
-表格边框
-border
-
-折叠边框
-border-collapse
-参数：separate collapse
-
-表格的宽度和高度
-width height
-
-表格文本对齐
-text-align vertical-align
-
-表格内边距
-padding
-
-表格颜色
-color
-background-color
-
-相邻单元格边框间距
-border-spacing
-
-表格标题放置位置
-caption-side
-参数：top bottom
-
-空单元格的边框
-empty-cells
-参数：automatic 由单元格内容设定 fixed由表格宽度和列宽度设定
-
+略
 
 ## CSS 轮廓
 
@@ -536,6 +581,7 @@ empty-cells
 
 ### 轮廓宽度
 `outline-width` 
+
 参数：
 - thin 细轮廓 
 - medium 默认 
@@ -543,482 +589,279 @@ empty-cells
 - length 可规定轮廓粗细值
 
 
-## CSS 框模型
+## CSS 盒模型
 
-由外到内 margin border padding element(width height)
+### 由外到内 `margin` `border` `padding` `element`。
 
-padding
+### padding
+
+内边距，是盒模型中border与element中的部分。
+
 参数：长度值 百分数值 不接受负值 可按照上右下左的顺序规定
-padding-top
-padding-right
-padding-bottom
-padding-left
 
-border
-元素的背景是内容、内边距和边框区的背景
+### border
 
-边框样式
-boder-style
-参数：none hidden dotted dashed solid double groove ridge inset outset
-border-top-style
-border-right-style
-border-bottom-style
-border-left-style
-如果没有设置边框样式，边框就不会出现，相应的，宽度，颜色等都无效
+边框。
 
-边框颜色
-border-color 
-border-top-color
-border-right-color
-border-bottom-color
-border-left-color
-边框颜色可以设置为transparent，可创建有宽度的不可见边框
+`boder-style` 边框样式
 
-边框宽度
-border-width
+参数：`none hidden dotted dashed solid double groove ridge inset outset`
+
+如果没有设置边框样式，边框就不会出现，相应的，宽度，颜色等都无效。
+
+`border-color` 边框颜色
+
+边框颜色可以设置为transparent，可创建有宽度的不可见边框。
+
+`border-width` 边框宽度
+
 参数：thin medium thick length
-border-top-width
-border-right-width
-border-bottom-width
-border-left-width
 
+### margin
 
-## CSS 外边距
-margin
+外边距，是盒模型中border之外的部分。
+
 参数：长度值 百分数值
-margin-top
-margin-right
-margin-bottom
-margin-left
 
+### CSS 外边距合并
 
-## CSS 外边距合并
 当两个垂直外边距相遇时，它们将形成一个外边距。
+
 合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
+
 当一个元素出现在另一个元素上面时，第一个元素的下外边距与第二个元素的上外边距会发生合并。
+
 当一个元素包含在另一个元素中时（假设没有内边距或边框把外边距分隔开），它们的上和/或下外边距也会发生合并。
+
 当有一个空元素，它有外边距，但是没有边框或填充。在这种情况下，上外边距与下外边距就碰到了一起，它们会发生合并。
+
+## CSS3 边框
+### `border-radius` 圆角
+
+参数：
+指定圆角半径 接受 像素值 百分数值
+
+### `border-image` 边框图片
+`border-image`是一个简写属性，按照以下的顺序指定属性。
+- `border-image-source` 路径
+- `border-image-slice` 边框向内偏移
+- `border-image-width` 边框宽度
+- `border-image-outset` 边框图像区域超出边框的量。
+- `border-image-repeat` 平铺(repeat) 铺满(round) 拉伸(stretch)
+
 
 
 ## CSS overflow
-当元素框内内容溢出时发生的事情
-visible 默认值。内容不会被修剪，会呈现在元素框之外。
-hidden内容会被修剪，并且其余内容是不可见的。
-scroll内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
-auto如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
-inherit 规定应该从父元素继承 overflow 属性的值。
+当元素框内内容溢出时发生的事情。
+- visible 默认值。内容不会被修剪，会呈现在元素框之外。
+- hidden 内容会被修剪，并且其余内容是不可见的。
+- scroll 内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
+- auto 如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
+- inherit 规定应该从父元素继承 overflow 属性的值。
 
 ## CSS 定位
-定位允许你定义元素框相对于其正常位置应该出现的位置，或者相对于父元素、另一个元素甚至浏览器窗口本身的位置
+定位允许你定义元素框相对于其正常位置应该出现的位置，或者相对于父元素、另一个元素甚至浏览器窗口本身的位置。
 
-块级元素
-div，p，h1等元素被称为块级元素(block)，而span，strong被称为内联元素(inline)
-
-display
-修改生成框的类型
-
-CSS定位机制
-普通流，浮动，绝对定位
-行内框在一行中水平布置。可以使用水平内边距、边框和外边距调整它们的间距。
-但是，垂直内边距、边框和外边距不影响行内框的高度。
-由一行形成的水平框称为行框（Line Box），行框的高度总是足以容纳它包含的所有行内框。
-不过，设置行高可以增加这个框的高度。
-
-position
-参数：top right bottom left
-static 元素框正常生成。块级元素生成一个矩形框，作为文档流的一部分，行内元素则会创建一个或多个行框，置于其父元素中。
-relative 
-absolute 
-fixed 元素框的表现类似于将 position 设置为 absolute，不过其包含块是视窗本身。
-
-
-## CSS 相对定位
-relative
-元素框偏移某个距离。元素仍保持其未定位前的形状，它原本所占的空间仍保留。
-在使用相对定位时，无论是否进行移动，元素仍然占据原来的空间。
-因此，移动元素会导致它覆盖其它框。
-
-## CSS 绝对定位
-absolute
-设置为绝对定位的元素框从文档流完全删除，并相对于其包含块定位，
-包含块可能是文档中的另一个元素或者是初始包含块。
-元素原先在正常文档流中所占的空间会关闭，就好像该元素原来不存在一样。元素定位后生成一个块级框，而不论原来它在正常流中生成何种类型的框。
-绝对定位的元素的位置相对于最近的已定位祖先元素，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块。
-*根据用户代理的不同，最初的包含块可能是画布或 HTML 元素。
-*可以用z-index来设置堆叠顺序
-
-## CSS clip
-clip 属性剪裁绝对定位元素。
-参数：
-shape 设置元素的形状。唯一合法的形状值是：rect (top, right, bottom, left)
-auto默认值。不应用任何剪裁。
-inherit 规定应该从父元素继承 clip 属性的值。
-
-
-## CSS 浮动
-float
-参数：left right none 
-clear该属性规定元素的哪一侧不允许其他浮动元素。
-参数：left right both none
-*谁动谁设定
-
-
-## CSS 水平对齐
-使用margin属性
-margin:auto;
-*宽度不能为100%
-
-使用position属性左右对齐
-position:absolute;
-使用position在IE浏览器中必须声明<!DOCTYPE>属性
-
-使用float属性左右对齐
-float:left;
-float:right;
-
-
-## CSS 尺寸
-height
-width
-line-height
-max-height
-min-height
-max-width
-min-width
-
-
-## CSS 分类
-clear: none left right none inherit
-cursor: default auto url（使用指定url） pointer crosshair ......
-display: inline none block inli-block ......
-float: none left right inherit
-position: static absolute relative fixed inherit
-visibility: visible hidden collapse inherit
-
-
-## CSS 媒介类型
-媒介类型(Media Types)
-允许你定义以何种媒介来提交文档。
-文档可以被显示在显示器、纸媒介或者听觉浏览器等等。
+### position
 
 参数：
-all aural braille embossed handheld print projection screen tty tv
 
-实例：
-<style>
-@media screen
-{
-p.test {font-family:verdana,sans-serif; font-size:14px}
-}
-@media print
-{
-p.test {font-family:times,serif; font-size:10px}
-}
-@media screen,print
-{
-p.test {font-weight:bold}
-}
-</style>
+`static`
 
+该关键字指定元素使用正常的布局行为，即元素在文档常规流中当前的布局位置。此时 top, right, bottom, left 和 z-index 属性无效。
 
-## CSS 兼容
-opacity
-/* for IE */
-filter:alpha(opacity=60);
-/* CSS3 standard */
-opacity:0.6;
+`relative`
+
+该关键字下，元素先放置在未添加定位时的位置，再在不改变页面布局的前提下调整元素位置（因此会在此元素未添加定位时所在位置留下空白）。position:relative 对 table-*-group, table-row, table-column, table-cell, table-caption 元素无效。
+
+`absolute`
+
+元素会被移出正常文档流，并不为元素预留空间，通过指定元素相对于最近的非 static 定位祖先元素的偏移，来确定元素位置。绝对定位的元素可以设置外边距（margins），且不会与其他边距合并。
+
+`fixed`
+
+元素会被移出正常文档流，并不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。打印时，元素会出现在的每页的固定位置。fixed 属性会创建新的层叠上下文。当元素祖先的 transform、perspective、filter 或 backdrop-filter 属性非 none 时，容器由视口改为该祖先。
+
+`sticky`
+
+元素根据正常文档流进行定位，然后相对它的最近滚动祖先（nearest scrolling ancestor）和 containing block（最近块级祖先 nearest block-level ancestor），包括 table-related 元素，基于 top、right、bottom 和 left 的值进行偏移。偏移值不会影响任何其他元素的位置。 该值总是创建一个新的层叠上下文（stacking context）。注意，一个 sticky 元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的 overflow 是 hidden、scroll、auto 或 overlay 时），即便这个祖先不是最近的真实可滚动祖先。这有效地抑制了任何“sticky”行为。
 
 
-## CSS3 边框
-border-radius方框圆角
-参数：指定圆角半径 接受 像素值 百分数值 
-兼容：
--moz-border-radius:... /* Old Firefox */
+### CSS 浮动
+略
 
-box-shadow方框阴影
+
+## CSS 媒体查询
+媒体查询（Media queries）非常实用，尤其是当你想要根据设备的大致类型（如打印设备与带屏幕的设备）或者特定的特征和设备参数（例如屏幕分辨率和浏览器视窗宽度）来修改网站或应用程序时。
+
+媒体查询常被用于以下目的：
+
+有条件的通过 @media 和 @import at-rules 用CSS 装饰样式。
+用 media= 属性为`<style>`, `<link>`, `<source>`和其他HTML元素指定特定的媒体类型。如：
+```html
+<link rel="stylesheet" src="styles.css" media="screen" />
+<link rel="stylesheet" src="styles.css" media="print" />
+```
+
+### 定位媒体类型
+媒体类型描述了给定设备的一般类别。
+```css
+@media screen, print {/* ... */}
+```
+### 定位媒体特性
+媒体功能描述了给定的user agent的输出设备或环境的特定特征。例如，您可以将特定样式应用于特定宽度的显示器。
+```css
+@media (max-width: 1920px) {/* ... */}
+```
+### 创建复杂查询
+使用 not，and，和 only 等来结合多种类型和特性。
+### 版本 4 中的语法改进
+媒体查询 4 级规范对语法进行了一些改进，以使用具有“范围”类型（例如宽度或高度，减少冗余）的功能进行媒体查询。级别 4 添加了用于编写此类的查询范围上下文。例如，使用最大宽度max- 功能，我们可以编写以下代码：
+```css
+@media (max-width: 30em) {/* ... */}
+```
+在媒体查询 4 级规范可以这样写：
+```css
+@media (width <= 30em) {/* ... */}
+```
+使用min-和max-可以测试一个在两个值之间的宽度。
+```css
+@media (min-width: 30em) and (max-width: 50em) {/* ... */}
+```
+用 4 级语法书写如下
+```css
+@media (30em <= width <= 50em ) {/* ... */}
+```
+
+## CSS3 Box
+### `box-shadow` 阴影
 语法：box-shadow: h-shadow v-shadow blur spread color insert;
+
 参数：
-h-shadow 必需，水平阴影的位置
-v-shadow 必需，垂直阴影的位置
-blur 模糊距离
-spread 阴影尺寸
-color 阴影颜色
-insert 外部阴影改为内部阴影
-兼容：
--moz-box-shadow:... /* Old Firefox */
+- h-shadow 必需，水平阴影的位置
+- v-shadow 必需，垂直阴影的位置
+- blur 阴影模糊半径
+- spread 阴影扩散半径
+- color 阴影颜色
+- insert 外部阴影改为内部阴影
 
-border-image边框图片
-border-image是一个简写属性
-border-image-source路径
-border-image-slice边框向内偏移
-border-image-width边框宽度
-border-image-outset边框图像区域超出边框的量。
-border-image-repeat平铺(repeat) 铺满(round) 拉伸(stretch)
-
-兼容：
--moz-border-image:... /* Old Firefox */
--webkit-border-image:... /* Safari 5 */
--o-border-image:... /* Opera */
-
-浏览器支持：
-Internet Explorer 9+ 支持 border-radius 和 box-shadow 属性。
-Firefox、Chrome 以及 Safari 支持所有新的边框属性。
-对于 border-image，Safari 5 以及更老的版本需要前缀 -webkit-。
-Opera 支持 border-radius 和 box-shadow 属性，但是对于 border-image 需要前缀 -o-。
-
-
-## CSS3 背景
-background-size背景图片尺寸
-语法：
-background-size: length|percentage|cover|contain;
-length: 设置宽高
-percentage: 设置宽高
-cover: 把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。
- 背景图像的某些部分也许无法显示在背景定位区域中。
-contain:把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。
-兼容：
--moz-background-size:.../*Old Firefox*/
-
-background-origin背景图片定位区域
-参数：
-padding-box: 相对于内边距框定位
-border-box: 相对于边框盒定位
-content-box: 相对于内容框定位
-相当于指定background-position开始的参照点是在哪里
-
-background-clip背景绘制区域
-参数：
-border-box: 背景被裁剪到边框盒
-padding-box: 背景被裁剪到内边距框
-content-box: 背景被裁剪到内容框
-相当于指定从哪里开始可以显示背景色和背景图片
-
-多重背景
-background-image:url(bg_flower.gif),url(bg_flower_2.gif);
-
-
-## CSS3 文本效果
-text-shadow文字阴影
-参数：
-h-shadow 必需。水平阴影的位置。允许负值。
-v-shadow必需。垂直阴影的位置。允许负值。
-blur可选。模糊的距离。 
-color 可选。阴影的颜色。参阅 CSS 颜色值。
-
-word-wrap截断长单词
-参数：
-normal: 默认
-break-word: 截断
-
-word-break
-参数：
-normal: 使用浏览器默认的换行规则。
-break-all: 允许在单词内换行。
-keep-all: 只能在半角空格或连字符处换行。
-
-text-overflow
-参数：
-clip: 修剪文本
-ellipsis: 用省略号代替被修建文本
-string: 用指定的该字符串代替被修剪文本
-
-
-## CSS3 字体
-@font-face
-语法：
-@font-face
-{
-font-family: ...;
-src: url('...'),
- url('...');
-}
-参数：
-font-family: 必需。规定字体的名称。
-src: 必需。定义字体文件的 URL。
-font-stretch: 拉伸字体
-font-style:字体样式
-font-weight:字体粗细
-
-兼容性：
-Firefox、Chrome、Safari 以及 Opera 支持 .ttf (True Type Fonts) 和 .otf (OpenType Fonts) 类型的字体。
-Internet Explorer 9+ 支持新的 @font-face 规则，但是仅支持 .eot 类型的字体 (Embedded OpenType)。
+### `box-sizing` 宽高计算方式
+CSS 中的 box-sizing 属性定义了 user agent 应该如何计算一个元素的总宽度和总高度。
+- `content-box`
+  默认值，标准盒子模型。width 与 height 只包括内容的宽和高，不包括边框（border），内边距（padding），外边距（margin）。
+- `border-box`
+  width 和 height 属性包括内容，内边距和边框，但不包括外边距。
 
 
 ## CSS3 2DTransform
-translate()位移translateX(n)translateY(n)
-参数：像素值 x,y的位置参数
-兼容：
-transform: translate(50px,100px);
--ms-transform: translate(50px,100px); /* IE 9 */
--webkit-transform: translate(50px,100px); /* Safari and Chrome */
--o-transform: translate(50px,100px);/* Opera */
--moz-transform: translate(50px,100px);/* Firefox */
+### `translate` 位移 
 
-rotate()旋转
+`translateX(n) translateY(n)`
+
+参数：像素值 
+x,y 的位置参数
+```css
+transform: translate(50px, 100px);
+```
+
+### `rotate`旋转
 参数：元素顺时针转动角度，允许负值，n deg。
-兼容：
+```css
 transform: rotate(30deg);
--ms-transform: rotate(30deg); /* IE 9 */
--webkit-transform: rotate(30deg); /* Safari and Chrome */
--o-transform: rotate(30deg);/* Opera */
--moz-transform: rotate(30deg);/* Firefox */
+```
 
-scale()缩放scaleX(n)scaleY(n)
+### `scale`缩放
+
+`scaleX(n) scaleY(n)`
+
 参数：宽高倍数
-兼容：
+```css
 transform: scale(2,4);
--ms-transform: scale(2,4);/* IE 9 */
--webkit-transform: scale(2,4);/* Safari 和 Chrome */
--o-transform: scale(2,4); /* Opera */
--moz-transform: scale(2,4); /* Firefox */
+```
 
-skew()翻转skewX(angle)skewY(angle)
-参数：沿x,y轴翻转的角度
-兼容：
-transform: skew(30deg,20deg);
--ms-transform: skew(30deg,20deg); /* IE 9 */
--webkit-transform: skew(30deg,20deg); /* Safari and Chrome */
--o-transform: skew(30deg,20deg);/* Opera */
--moz-transform: skew(30deg,20deg);/* Firefox */
+### `skew`翻转
+`skewX(angle) skewY(angle)`
 
-matrix()用6个参数对元素进行操作
-兼容：
-transform:matrix(0.866,0.5,-0.5,0.866,0,0);
--ms-transform:matrix(0.866,0.5,-0.5,0.866,0,0); /* IE 9 */
--moz-transform:matrix(0.866,0.5,-0.5,0.866,0,0);/* Firefox */
--webkit-transform:matrix(0.866,0.5,-0.5,0.866,0,0); /* Safari and Chrome */
--o-transform:matrix(0.866,0.5,-0.5,0.866,0,0);/* Opera */
+参数：沿 x,y 轴翻转的角度
+```css
+transform: skew(30deg, 20deg);
+```
 
-transform-origin
-设置旋转元素的基点位置
+### `matrix`用6个参数对元素进行操作
+`matrix( scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY() )`
+
+```css
+transform: matrix(0.866, 0.5, -0.5, 0.866, 0, 0);
+```
+
+### `transform-origin`
+设置元素变形的原点。
+
 参数：
 left center right 长度值 百分数值
 
-兼容：
-Internet Explorer 10、Firefox、Opera 支持 transform-origin 属性。
-Internet Explorer 9 支持替代的 -ms-transform-origin 属性（仅适用于 2D 转换）。
-Safari 和 Chrome 支持替代的 -webkit-transform-origin 属性（3D 和 2D 转换）。
-Opera 只支持 2D 转换。
-
-
-## CSS3 3D Transform
-rotateX() rotateY()
-参数：绝对角度
-兼容：
-transform: rotateX(120deg);
--webkit-transform: rotateX(120deg); /* Safari 和 Chrome */
--moz-transform: rotateX(120deg);/* Firefox */
-
 
 ## CSS3 过渡
-transition: property duration timing-function delay;
-*transition 写在要被过渡的盒子里
+### `transition`
+该属性是以下属性的简写形式。
+
 属性：
-property 规定应用过渡效果的 CSS 属性的名称
-duration 过渡持续时间 参数：time
-timing-function 过渡开始结束时的过渡效果 参数：linear ease ease-in ease-out...
-delay 过渡之前的等待时间
-兼容：
-Internet Explorer 10、Firefox、Chrome 以及 Opera 支持 transition 属性。
-Internet Explorer 9 以及更早的版本，不支持 transition 属性。
-transition: ...;
--moz-transition: ...;/* Firefox 4 */
--webkit-transition: ...; /* Safari 和 Chrome */
--o-transition: ...;/* Opera */
+- `transition-property` 规定应用过渡效果的 CSS 属性的名称。
+- `transition-duration` 属性以秒或毫秒为单位指定过渡动画所需的时间。默认值为 0s，表示不出现过渡动画。
+- `transition-timing-function` 速度曲线。参数：linear ease ease-in ease-out...
+- `transition-delay` 过渡之前的等待时间
 
 
 ## CSS3 动画
-@keyframes
-先用@keyframes制作动画，再在某个选择器中设定animation和时间
-@keyframes 中可以用from，to也可用百分数值规定
+### `@keyframes`
+创建一个带名称的 `@keyframes` 规则，以便后续使用 `animation-name` 属性将动画同其关键帧声明匹配。
 
-animation属性
-name: 规定动画的名称
-duration: 规定一个周期所花时间 0
-timing-function: 速度曲线 ease
-delay: 延迟 0
-iteration-count:动画被播放次数 1
-direction: 规定动画在下一周期是否逆向播放 normal alternate
-play-state: 规定动画是否正在运行或暂停 running 结合js使用
-fill-mode: 规定对象动画时间之外的状态
+关键帧 `@keyframes` 通过在动画序列中定义关键帧（或 waypoints）的样式来控制 CSS 动画序列中的中间步骤。
 
-兼容：
-@keyframes myfirst
-@-moz-keyframes myfirst /* Firefox */
-@-webkit-keyframes myfirst /* Safari 和 Chrome */ 
-@-o-keyframes myfirst /* Opera */
+参数：
+- percentage
+动画序列中触发关键帧的时间点，使用百分值来表示
+
+- from
+等价于 0%
+
+- to
+等价于 100%
 
 
-## CSS3 多列
-创建多个列来对文本进行布局
-column-count: 规定元素被分隔的列数
-column-gap: 规定列之间的间隔
-column-rule: 规定列之间的宽度，样式和颜色规则
-属性：
-color: 颜色值
-style: none hidden dotted dashed solid
-width: medium thin thick 长度值
-column-width: 列的宽度 auto 长度值
-column-span: 1 all 跨列
-column: width和count的简写属性
-兼容：
-Internet Explorer 10 和 Opera 支持多列属性。
-Firefox 需要前缀 -moz-。
-Chrome 和 Safari 需要前缀 -webkit-。
-Internet Explorer 9 以及更早的版本不支持多列属性。
+### `animation` 属性 
+
+该属性是以下属性的简写形式。
+
+- `animation-name` 规定动画的名称，对应`@keyframes`提供的名称
+- `animation-duration` 规定一个周期所花时间
+- `animation-timing-function` 速度曲线
+- `animation-delay` 过渡之前的等待时间
+- `animation-iteration-count` 动画的播放次数。参数：
+  - infinite 无限循环播放动画
+  - number 指定播放次数
+- `animation-direction` 规定动画播放形式。参数：
+  - normal 正常播放
+  - reverse 反向播放
+  - alternate 反复播放
+  - alternate-reverse 反向反复播放
+  
+- `animation-fill-mode` 设置 CSS 动画在执行之前和之后如何将样式应用于其目标。参数：
+  - none 当动画未执行时，动画将不会将任何样式应用于目标，而是已经赋予给该元素的 CSS 规则来显示该元素。这是默认值。
+  - forwards 目标将保留由执行期间遇到的最后一个关键帧计算值。
+  - backwards 动画将在应用于目标时立即应用第一个关键帧中定义的值，并在animation-delay期间保留此值。
+  - both 动画将遵循forwards和backwards的规则，从而在两个方向上扩展动画属性。
+- `animation-play-state` 设置播放和暂停状态。参数：
+  - running 当前动画正在运行。
+  - paused 当前动画已被停止。
 
 
-## CSS3 用户界面
-resize: 规定是否可由用户调节元素尺寸
-参数：none both horizontal vertical
-*若想此属性生效，则需要设置overflow属性，参数：auto, hidden ,scroll
-box-sizing: content-box（default），border-box，padding-box。
+## Flex
+参考链接：
+[阮一峰的网络日志：《Flex 布局教程：语法篇》](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 
-outline-offset: 对轮廓进行偏移，并在边框边缘进行绘制参数：长度值
-兼容：
-Firefox、Chrome 以及 Safari 支持 resize 属性。
-Internet Explorer、Chrome、Safari 以及 Opera 支持 box-sizing 属性。Firefox 需要前缀 -moz-。
-所有主流浏览器都支持 outline-offset 属性，除了 Internet Explorer。
-
-## CSS 按钮 （选择器选到button）
-按钮颜色background-color
-按钮大小font-size
-远郊按钮border-radius
-按钮边框颜色border-color
-鼠标悬停:hover
-按钮阴影详见border-shadow
-按钮宽度 width
-按钮动画
-
-## CSS3 nth-child() 选择器
-匹配属于其父元素的第 N 个子元素，不论元素的类型。
-even表示单数，odd表示复数
-<style>
-p:nth-child()
-{
- CSSCode
-}
-<div>
-<p></p>
-<p></p>
-<p></p>
-</div>
+## Grid
+参考链接：
+[阮一峰的网络日志：《CSS Grid 网格布局教程》](https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html)
 
 
-## CSS 颜色名
-Coral
-CornflowerBlue
-DarkViolet
-DeepSkyBlue
-FloralWhite
-HotPink
-LightGreen
-Lime
-Navy
-OrangeRed
-Plum
-Silver
-SlateGray
-Snow
-Tomato
-SteelBlue
