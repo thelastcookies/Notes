@@ -12,7 +12,7 @@ Stable Diffusion 是一种潜在的 `text-to-image`、`image-to-image` 扩散模
 - 操作系统：Windows 10（5年内不升11😋）
 - 显卡：RTX 4070Ti 12G（NOTE：官方要求显存要大于 10G）
 - CUDA：11.7
-- Python：3.10.6（NOTE：似乎必须是此版本，[下载链接](https://www.python.org/downloads/release/python-3106/)）
+- Python：3.10.6（NOTE：似乎必须是此版本，[官网链接](https://www.python.org/downloads/release/python-3106/)）
 
 
 ## 自动化安装
@@ -113,7 +113,7 @@ call webui.bat
 
 其中有 `sd-v1-1` 到 `sd-v1-5` 的模型下载（2023.04.23）。
 
-![sd--checkpoint-list](../../static/images/ml_ai/sd--checkpoint-list.jpg)
+![sd--checkpoint-list](../../static/images/ml_ai/stable_diffusion/sd__checkpoint_list.jpg)
 
 
 或者可以选择直接点击这里下载： [v1-5-pruned.ckpt - 7.7GB](https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.ckpt)
