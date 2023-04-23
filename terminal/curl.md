@@ -1,6 +1,6 @@
 # 🥦 curl - Command Line Tool and Library for Transferring Data with URLs 
 
-![curl-logo.svg](../static/images/curl--logo.svg)
+![curl-logo.svg](../static/images/curl__logo.svg)
 ##  什么是 curl ？
 `curl`是开源项目**cURL**的产品之一。
 旨在基于网络协议，通过命令行的简单指令，使用指定的协议，对指定URL进行数据传输。
@@ -109,7 +109,7 @@ $ curl -L https://example.com
   $ curl -C 400 https://example.com
   ``` 
 - #### 进度条说明：
-  ![](../static/images/curl--file-transfer.png)
+  ![](../static/images/curl__file_transfer.png)
 
   ```
   从左到右的标注依次：
@@ -144,7 +144,7 @@ $ curl -u name:passwd http://machine.domain/full/path/to/file
 ```
 $ curl -v https://example.com
 ```
-![curl--verbose.png](../static/images/curl--verbose.png)
+![curl--verbose.png](../static/images/curl__verbose.png)
 其中，以`>`开头的行表示`Request Headers`，以`<`开头的行表示`Response Headers`，以`*`开头的行表示`curl`提供的附加信息。
 
 另外，`-i, --include` 用于只查看 `Response Headers`。`-D, --dump-header <filename>` 用于将`Response Headers`写入指定文件进行存档。

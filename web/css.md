@@ -1,6 +1,6 @@
 ﻿# CSS 层叠样式表 Cascading Style Sheets
 
- ![css-logo.jpg](../static/images/css--logo.jpg)
+ ![css-logo.jpg](../static/images/css__logo.jpg)
 
 ## 什么是 CSS ？
 CSS是用来为 HTML 文档添加样式的语言，描述了 HTML 元素应如何显示。
