@@ -1,6 +1,6 @@
 # 🐿 Go
 
-![go--logo.png](../static/images/go/go__logo.png)
+![go--logo.png](../static/images/go/go__banner.png)
 
 # Why Go? 
 

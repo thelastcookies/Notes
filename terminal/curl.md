@@ -1,20 +1,24 @@
 # 🥦 curl - Command Line Tool and Library for Transferring Data with URLs 
 
-![curl-logo.svg](../static/images/curl__logo.svg)
+![curl-logo.svg](../static/images/curl__banner.svg)
 ##  什么是 curl ？
+
 `curl`是开源项目**cURL**的产品之一。
 旨在基于网络协议，通过命令行的简单指令，使用指定的协议，对指定URL进行数据传输。
 
-
 ##  curl支持的协议
+
 `curl` 支持的通信协议主要有 `HTTP(S)`, `FTP(S)`, `SFTP` , `IMAP(S)`, `SMTP(S)`,
 `LDAP(S)`, `POP3(S)`, `RTSP`, `TELNET`等。
 
 ##  通用指令格式：
+
 ```
 $ curl [options / URLs]
 ```
+
 ## 实现对 RESTful API 的请求
+
 - #### `-X, --request <method>`  指定METHOD。
   指定与 HTTP 服务器通信时要使用的自定义请求方法。
   ```
@@ -22,6 +26,7 @@ $ curl [options / URLs]
   $ curl -X PUT https://example.com
   $ curl -X DELETE https://example.com
   ```
+  
 - #### `-d, --data <data>` 数据选项。
   将指定数据发送到 HTTP 服务器。默认格式为`application/x-www-form-urlencoded`。
   ```
@@ -56,6 +61,7 @@ $ curl [options / URLs]
   ```
 
 ## 重定向
+
 `-L, --location` 如果服务器报告请求的页面已移动到不同的位置（即返回状态码 3XX），
 此选项将使 curl 在新位置重新请求。
 ```
@@ -63,6 +69,7 @@ $ curl -L https://example.com
 ```
 
 ## 文件传输
+
 - #### `-O, --remote-name`/`-o, --output <file>`下载。
   ```
   $ curl -O https://example.com/file
@@ -128,6 +135,7 @@ $ curl -L https://example.com
   ```
 
 ## 使用密码
+
 `-u, --user <user:password>`
 可以在`HTTP`、`FTP`等协议里使用下述两种方式来进行用户验证。
 
@@ -139,12 +147,14 @@ $ curl -u name:passwd http://machine.domain/full/path/to/file
 ```
 
 ## 详细信息：
+
 `-v, --verbose` 用于查看和调试连接情况。
 
 ```
 $ curl -v https://example.com
 ```
 ![curl--verbose.png](../static/images/curl__verbose.png)
+
 其中，以`>`开头的行表示`Request Headers`，以`<`开头的行表示`Response Headers`，以`*`开头的行表示`curl`提供的附加信息。
 
 另外，`-i, --include` 用于只查看 `Response Headers`。`-D, --dump-header <filename>` 用于将`Response Headers`写入指定文件进行存档。
@@ -155,6 +165,7 @@ $ curl --D store.txt https://example.com
 ```
 
 ## 代理
+
 `-x, --proxy [protocol://]host[:port]` 使用指定的代理。
 
 可以使用`protocol://`前缀指定代理字符串，默认为 HTTP 代理。

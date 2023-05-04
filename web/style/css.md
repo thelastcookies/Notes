@@ -1,6 +1,6 @@
 ﻿# CSS 层叠样式表 Cascading Style Sheets
 
- ![css-logo.jpg](../static/images/css__logo.jpg)
+ ![css-logo.jpg](../../static/images/web/css__banner.jpg)
 
 ## 什么是 CSS ？
 CSS是用来为 HTML 文档添加样式的语言，描述了 HTML 元素应如何显示。
@@ -298,7 +298,7 @@ This is a paragraph
 `background-color`
 
 参数：合法的颜色值 默认值：transparent
-实例：p {background-color: gray;}
+示例：p {background-color: gray;}
 不能继承 
 
 ### 背景图片

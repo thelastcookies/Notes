@@ -4,7 +4,6 @@
 
 `apt`是一个命令行实用程序，用于在 Ubuntu、Debian 和相关 Linux 发行版上安装、更新、删除和管理`deb`软件包及依赖。
 
-
 ## 通用指令格式：
 ```
 $ apt [options] [command] [package ...]
