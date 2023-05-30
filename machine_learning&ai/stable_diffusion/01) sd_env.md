@@ -79,7 +79,7 @@ trusted-host = mirrors.aliyun.com
 
 在设置上面 pip 换源的前提下，配置 GitHub 加速。
 
-方法可以参考 [github_acc.md](../../utils/git/github_acc.md)
+方法可以参考 [《github_acc.md》](../../utils/git/github_acc.md)
 
 > 最佳实践：通过 GitHub 加速一劳永逸地解决这个问题！之前踩这个坑的时候看到网上很多人主张将每个库手动 clone 之后再 pip 安装，只能说极不优雅还容易出错，折腾的还是自己😅。
 ---
