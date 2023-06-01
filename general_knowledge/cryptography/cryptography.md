@@ -2,8 +2,6 @@
 
 ![cryptography__banner.webp](../../static/images/general_knowledge/cryptography/cryptography__banner.webp)
 
-[TOC]
-
 ## 什么是密码学？
 
 密码学是一种通过使用编码算法、哈希和签名来保护信息的实践科学。
@@ -458,9 +456,6 @@ TLS 1.3 目前被认为是足够安全的，性能较1.2版本有所提升，但
 参考：[《ssh.md》](../../terminal/ssh.md)
 
 
+参考资料：
 
-
-
-
-
-参考资料：[写给开发人员的实用密码学](https://thiscute.world/series/写给开发人员的实用密码学/)
+> [写给开发人员的实用密码学](https://thiscute.world/series/写给开发人员的实用密码学/)
