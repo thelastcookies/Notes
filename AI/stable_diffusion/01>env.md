@@ -1,6 +1,6 @@
 # 👩🏻‍🏫 Stable Diffusion 环境搭建
 
-> 以下为作者搭建 SD 环境的全部过程，以及遇到的一些问题。考虑到不同操作系统、硬件配置等的差异，经验可能有局限性，但是总体的思路是值得借鉴的。
+> 以下为作者搭建 SD 环境的全部过程以及遇到的一些问题。考虑到不同操作系统、硬件配置等的差异，经验可能有局限性，但是总体的思路是值得借鉴的。
 
 ## 什么是 Stable Diffusion?
 Stable Diffusion 是一种潜在的 `text-to-image`、`image-to-image` 扩散模型。
@@ -9,14 +9,16 @@ Stable Diffusion 是一种潜在的 `text-to-image`、`image-to-image` 扩散模
 [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 是大神 AUTOMATIC1111 发布的一款浏览器端的 Stable Diffusion 图形界面，可以在个人环境中部署，便于训练和调试。
 
 ## 本地环境（作者实际）
-- 操作系统：Windows 10（5年内不升11😋）
+- 操作系统：Windows 10
 - 显卡：RTX 4070Ti 12G（NOTE：官方要求显存要大于 10G）
-- CUDA：11.7
 - Python：3.10.6（NOTE：似乎必须是此版本，[官网链接](https://www.python.org/downloads/release/python-3106/)）
+- Torch(venv)：1.13.1+cu117
 
 
 ## 自动化安装
-[stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) clone 或下载后，运行 `webui-user.bat`。
+从 Stable Diffusion web UI 的 [Github 仓库](https://github.com/AUTOMATIC1111/stable-diffusion-webui) 将项目文件 clone 或下载后，运行 `webui-user.bat`。
+
+## 遇到的问题
 
 ### 若 Pytorch 等依赖下载缓慢
 更改 pip 源来加速下载。
@@ -61,7 +63,7 @@ index-url = https://mirrors.aliyun.com/pypi/simple/
 trusted-host = mirrors.aliyun.com
 ```
 
-> 最佳实践：通过自动化脚本下载 `pytorch`，手动下载一定要注意 CUDA 和 torch 版本的匹配问题。
+> **NOTE:** 通过自动化脚本下载 `pytorch`，手动下载一定要注意 CUDA 和 torch 版本的匹配问题。
 > 
 > ```python
 > >>> import torch
@@ -113,7 +115,7 @@ call webui.bat
 
 其中有 `sd-v1-1` 到 `sd-v1-5` 的模型下载（2023.04.23）。
 
-![sd--checkpoint-list](../../static/images/ml_ai/stable_diffusion/sd__checkpoint_list.jpg)
+![sd--checkpoint-list](../../static/images/ai/stable_diffusion/sd__checkpoint_list.jpg)
 
 
 或者可以选择直接点击这里下载： [v1-5-pruned.ckpt - 7.7GB](https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.ckpt)
