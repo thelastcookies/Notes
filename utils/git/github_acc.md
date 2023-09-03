@@ -19,6 +19,12 @@ Windows 下：
 C:\Windows\System32\drivers\etc\hosts
 ```
 
+Mac 下：
+
+```
+/private/etc/hosts
+```
+
 ***修改 hosts 文件可能只能解决访问的问题，并不能保证速度，所以以下提供几种可以加速访问的方法。***
 
 ## 使用公用加速源
