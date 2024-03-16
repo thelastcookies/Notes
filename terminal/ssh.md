@@ -93,6 +93,71 @@ SSH 指令按照如下顺序来获取相关配置信息：
 
 如果配置文件未指定，则端口默认为 `22`，用户名默认为当前用户。
 
+## 首次连接
+
+若客户端从未连接过目标主机，则目标主机的 SSH 密钥尚未受信，无法进行后续操作。
+
+要解决这个问题，可以尝试以下方法：
+
+### 通过手动验证
+
+执行一次 SSH 连接到目标主机，并手动验证主机密钥。
+
+第一次连接到目标主机时，SSH 会提示接受或拒绝主机密钥。可以通过确认主机密钥是否正确，来决定是否继续连接。
+
+如果确认无误后继续连接，则目标主机的密钥将被添加到 `known_hosts` 文件中。
+
+```
+$ ssh user@xx.xx.xx.xx
+The authenticity of host 'xx.xx.xx.xx(xx.xx.xx.xx)' can't be established.
+ED25519 key fingerprint is XXXXXXXXXX.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'xx.xx.xx.xx' (ED25519) to the list of known hosts.
+root@xx.xx.xx.xx's password: 
+Linux VM-4-15-debian 5.10.0-19-amd64 #1 SMP Debian 5.10.149-2 (2022-10-21) x86_64
+```
+
+### 通过指令添加
+
+使用 `ssh-keyscan` 命令扫描目标主机的 SSH 主机密钥，并将其添加到 `known_hosts` 文件中。
+
+`ssh-keyscan` 是一个用于收集大量主机的 SSH 主机公钥的实用程序，用于帮助生成和验证 SSH `known_hosts` 文件。
+
+`ssh-keyscan` 以并行方式联系尽可能多的主机，因此该实用程序非常高效。包括 1000 个主机的域中的密钥可以在几十秒内收集完毕，即使其中一些主机关闭或未运行 SSH。扫描时，不需要登录访问所扫描的计算机，扫描过程也不涉及加密。
+
+```shell
+$ ssh-keyscan [options] [hostname]
+```
+
+`options` 常用选项说明：
+
+```
+-H 将输出格式化为适合添加到 known_hosts 文件的格式。
+-p <port>：指定要连接的 SSH 端口，默认为 22。
+-t <keytype>：指定要从被扫描的主机提取的密钥类型。type 的可能值包括用于协议版本 1 的 rsa1 和用于协议版本 2 的 rsa 或 dsa。可指定以逗号分隔的多个值。缺省值为 rsa。
+-f <file>：从该文件中读取主机或地址列表名称列表对，每行读取一个。如果指定的不是文件名，ssh-keyscan 将从标准输入中读取主机或地址列表名称列表对。
+
+-T <timeout> 设置连接尝试的超时时间。
+-4 基于IPv4网络协议。
+-6 基于IPv6网络协议。
+-v 显示执行过程详细信息。
+```
+
+使用 `ssh-keyscan` 扫描目标主机并添加信任：
+
+```shell
+$ ssh-keyscan -H xx.xx.xx.xx >> ~/.ssh/known_hosts
+```
+
+```
+# xx.xx.xx.xx:xx SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2
+# xx.xx.xx.xx:xx SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2
+# xx.xx.xx.xx:xx SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2
+# xx.xx.xx.xx:xx SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2
+# xx.xx.xx.xx:xx SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u2
+```
+
 ## SSH 密钥登录指令
 
 上文介绍的远程登录指令需要每次输入密码登录。鉴于每次输入密码并不方便，且密码的安全性直接关系到连接的安全，因此密钥登录是比密码登录更好的解决方案。
