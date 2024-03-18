@@ -50,15 +50,23 @@ github.com.cnpmjs.org
 
 **[dev-sidecar](https://github.com/docmirror/dev-sidecar)**
 
-这是一个为 GitHub 开发者边车，命名取自service-mesh的service-sidecar，意为为开发者打辅助的边车工具。
-
-> 开发者提示：开着ds重启电脑会导致无法上网，你可以再次打开ds，然后右键小图标退出ds即可。
+这是一个为 GitHub 开发者边车，命名取自 `service-mesh` 的 `service-sidecar`，意为为开发者打辅助的边车工具。
 
 特点：全平台支持；可以加速 Stack Overflow 和 npm。
 
 ## 配置本地 `HTTP` 代理
 
-需要科学上网方式，首先要查看上网工具的 `http` 或 `socks5` 代理端口（假如为 `7890` 或 `1080`）。
+需要科学上网方式，首先要查看上网工具的 `http` 或 `socks5` 代理端口（假如为 `7890` 或 `1080`），不赘述。
+
+### 查看已有配置
+
+```shell
+$ git config --global -l
+```
+
+> `Linux` 系统下可能没有初始的配置文件，返回 `No such file or directory`。
+>
+> 只需要在 `~/` 目录下新建 `.gitconfig` 文件，或者实际设置一遍代理也可自动生成。
 
 ### 全局代理设置
 
@@ -84,12 +92,6 @@ $ git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 $ git config --global https.https://github.com.proxy socks5://127.0.0.1:1080
 ```
 
-### 查看已有配置
-
-```shell
-$ git config --global -l
-```
-
 ### 取消代理
 
 ```shell
@@ -104,4 +106,4 @@ $ git config --global --unset https.https://github.com.proxy
 
 ## 本地 `SSH` 代理配置
 
-*To be continued*
+*To be continued.*
