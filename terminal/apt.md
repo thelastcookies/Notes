@@ -1,4 +1,4 @@
-# 📦 apt - Advanced Package Manager in Debian
+# 📦 apt - Advanced Package Manager
 
 ## 什么是 apt ？
 
