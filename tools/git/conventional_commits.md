@@ -19,6 +19,10 @@ Conventional Commits 的格式通常包括了三个部分：类型、作用范�
 - 更容易的集成和工具支持：许多版本控制工具、CI/CD 工具和代码托管平台已经支持 Conventional
   Commit。因此，采用这种标准化的提交消息格式，可以更容易地集成到现有的工作流程中，享受更多的工具支持和便利。
 
+## SemVer 规范
+
+本文中约定式提交规范遵循[语义化版本控制规范（SemVer）](https://semver.org/lang/zh-CN/)
+
 ## 格式与用法
 
 ```shell
@@ -160,6 +164,7 @@ Reviewed-by: Z
 Signed-off-by: Alice <alice@example.com>
 Refs: #123
 ```
+
 
 ## 参考资料
 
