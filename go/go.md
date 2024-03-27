@@ -1,30 +1,30 @@
 # 🐿 Go
 
-![go--logo.png](../static/images/go/go__banner.png)
+![go--logo.png](images/go__banner.png)
 
 # Why Go? 
 
 ## 云 & 网络服务
 
-![go--cloud-white.svg](../static/images/go/go__cloud_white.svg)
+![go--cloud-white.svg](images/go__cloud_white.svg)
 
 拥有强大的工具和API生态系统，使用Go可以在云服提供商上非常容易地构建服务。
 
 ## 命令行接口（CLI）
 
-![go--clis-white.svg](../static/images/go/go__clis_white.svg)
+![go--clis-white.svg](images/go__clis_white.svg)
 
 具有流行的开源包和强大的标准库，使用Go可以创建快速和优雅的CLI。
 
 ## Web开发
 
-![go--webdev-white.svg](../static/images/go/go__webdev_white.svg)
+![go--webdev-white.svg](images/go__webdev_white.svg)
 
 具有增强的内存性能，支持多种IDE，使用Go可以支持快速和可扩展的Web应用程序。
 
 ## 开发运维 & 网站可靠性工程
 
-![go--devops-white.svg](../static/images/go/go__devops_white.svg)
+![go--devops-white.svg](images/go__devops_white.svg)
 
 具有快速的构建时间、精简的语法、自动格式化程序和文档生成器。Go原生支持DevOps和SRE。
 

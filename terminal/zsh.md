@@ -1,6 +1,6 @@
 # Zsh
 
-![zsh__banner.png](../static/images/terminal/zsh__banner.png)
+![zsh__banner.png](images/zsh__banner.png)
 
 ## 什么是 Zsh？
 

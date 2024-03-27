@@ -1,6 +1,6 @@
 # SSH
 
-![ssh__banner.png](../static/images/terminal/ssh__banner.png)
+![ssh__banner.png](images/ssh__banner.png)
 
 ## 什么是 SSH ？
 

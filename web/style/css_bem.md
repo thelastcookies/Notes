@@ -1,8 +1,8 @@
-# [BEM](getbem.com) - CSS 命名方法论
+# [BEM](https://getbem.com) - CSS 命名方法论
 
 > ***There are only two hard problems in Computer Science: cache invalidation and naming things — Phil Karlton***
 
-![bem__banner.png](../../static/images/web/bem__banner.png)
+![bem__banner.png](images/bem__banner.png)
 
 ## 什么是 BEM ？
 

@@ -1,6 +1,6 @@
 # 🐳 Docker
 
-![docker-logo.jpg](../../static/images/tools/docker/docker__banner.png)
+![docker-logo.jpg](images/docker__banner.png)
 
 ## 什么是 Docker？
 

@@ -1,6 +1,6 @@
 # 应用密码学
 
-![cryptography__banner.webp](../../static/images/general_knowledge/cryptography/cryptography__banner.webp)
+![cryptography__banner.webp](images/cryptography__banner.webp)
 
 ## 什么是密码学？
 
@@ -56,7 +56,7 @@
 
 #### DHKE 协议流程
 
-![diffle_hellman.webp](../../static/images/general_knowledge/cryptography/diffle_hellman.webp)
+![diffle_hellman.webp](images/diffle_hellman.webp)
 
 步骤大致如下：
 
@@ -78,7 +78,7 @@
 
 这组密钥成为在两个或多个成员间的共同秘密，以便维持专属的通信联系。
 
-![symmetric_cryptography.webp](../../static/images/general_knowledge/cryptography/symmetric_cryptography.webp)
+![symmetric_cryptography.webp](images/symmetric_cryptography.webp)
 
 ### 特点
 
@@ -175,12 +175,12 @@ ECC 算法基于椭圆曲线离散对数问题（ECDLP）的计算难度来提�
 ##### 加法
 对于曲线上的任意两点 A 与 B，我们定义过 A, B 的直线与曲线的交点为 -(A+B)，而 -(A+B) 相对于 x 轴的对称点即为 A+B:
 
-![ecc_add_operation.webp](../../static/images/general_knowledge/cryptography/ecc_add_operation.webp)
+![ecc_add_operation.webp](images/ecc_add_operation.webp)
 
 ##### 二倍运算
 在加法规则中，如果 A = B，我们定义曲线在 A 点的切线与曲线的交点为 -2A，于是得到二倍运算的规则
 
-![ecc_2_times.webp](../../static/images/general_knowledge/cryptography/ecc_2_times.webp)
+![ecc_2_times.webp](images/ecc_2_times.webp)
 
 ##### k倍运算
 
@@ -305,8 +305,8 @@ PKI 通过「数字证书」+「数字证书认证机构」来解决「在分发
 
 下图为 `https://www.google.com` 的数字证书。
 
-![certificate_of_google_1.png](../../static/images/general_knowledge/cryptography/certificate_of_google_1.png)
-![certificate_of_google_2.png](../../static/images/general_knowledge/cryptography/certificate_of_google_2.png)
+![certificate_of_google_1.png](images/certificate_of_google_1.png)
+![certificate_of_google_2.png](images/certificate_of_google_2.png)
 
 ### 数字证书认证机构
 
@@ -334,11 +334,11 @@ PKI 引入了一个可信赖的第三方（Trusted third party，TTP）来解决
 
 数字证书链，或称信任链，由一连串层层信任的数字证书组成。由根证书为起点，凭借对签发机构的信任，使信任链终端的证书持有者也可以获得转授的信任，以证明身份。
 
-![chain_of_trust.webp](../../static/images/general_knowledge/cryptography/chain_of_trust.webp)
+![chain_of_trust.webp](images/chain_of_trust.webp)
 
 下图为 `https://www.google.com` 的证书链。
 
-![certificate_chain_of_google.png](../../static/images/general_knowledge/cryptography/certificate_chain_of_google.png)
+![certificate_chain_of_google.png](images/certificate_chain_of_google.png)
 
 #### 根证书
 
@@ -368,7 +368,7 @@ TLS 协议是一个「混合加密方案」，它借助数字证书与 PKI 公�
 
 不同密码学算法的组合形成不同的密码套件，算法组合的差异使这些密码套件具有不同的性能与安全性，另外 TLS 协议的更新迭代也导致各密码套件拥有不同的兼容性。 通常越新推出的密码套件的安全性越高，但是兼容性就越差（旧设备不支持）。
 
-![cipher_suite.png](../../static/images/general_knowledge/cryptography/cipher_suite.png)
+![cipher_suite.png](images/cipher_suite.png)
 
 以上图中的 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` 为例说明（TLSv1.2）：
 

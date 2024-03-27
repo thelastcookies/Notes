@@ -4,7 +4,7 @@
 
 本文是我对RESTful 架构风格的一些理解，和大家分享一下，如果有问题，欢迎讨论。
 
-![blog-post-restful-style.png](../../static/images/general_knowledge/restful_api/blog-post-restful-style.png)
+![blog-post-restful-style.png](images/blog-post-restful-style.png)
 
 ## Outline
 - 1.RESTful架构风格
@@ -45,7 +45,7 @@ REST即`Representational State Transfer`的缩写，可译为"表现层状态转
 
 资源和数据关系如下：
 
-![blog-post-rest-resource-vs-data.png](../../static/images/general_knowledge/restful_api/blog-post-rest-resource-vs-data.png)
+![blog-post-rest-resource-vs-data.png](images/blog-post-rest-resource-vs-data.png)
 
 #### 1.1.2 统一接口
 
@@ -71,9 +71,9 @@ RESTful架构风格规定，数据的元操作，即`CRUD`(create, read, update�
 
 有状态和无状态的区别，举个简单的例子说明一下。如查询员工的工资，如果查询工资是需要登录系统，进入查询工资的页面，执行相关操作后，获取工资的多少，则这种情况是有状态的，因为查询工资的每一步操作都依赖于前一步操作，只要前置操作不成功，后续操作就无法执行；如果输入一个url即可得到指定员工的工资，则这种情况是无状态的，因为获取工资不依赖于其他资源或状态，且这种情况下，员工工资是一个资源，由一个url与之对应，可以通过HTTP中的GET方法得到资源，这是典型的RESTful风格。
 
-![blog-post-rest-state.png](../../static/images/general_knowledge/restful_api/blog-post-rest-state.png)
+![blog-post-rest-state.png](images/blog-post-rest-state.png)
 
-![blog-post-rest-stateless.png](../../static/images/general_knowledge/restful_api/blog-post-rest-stateless.png)
+![blog-post-rest-stateless.png](images/blog-post-rest-stateless.png)
 
 ### 1.2 ROA、SOA、REST与RPC
 
@@ -83,9 +83,9 @@ RPC风格曾是Web Service的主流，最初是基于XML-RPC协议（一个远�
 
 RPC与RESTful的区别如下面两个图所示：
 
-![blog-post-rest-RPC-service.png](../../static/images/general_knowledge/restful_api/blog-post-rest-RPC-service.png)
+![blog-post-rest-RPC-service.png](images/blog-post-rest-RPC-service.png)
 
-![blog-post-rest-RESTful-service.png](../../static/images/general_knowledge/restful_api/blog-post-rest-RESTful-service.png)
+![blog-post-rest-RESTful-service.png](images/blog-post-rest-RESTful-service.png)
 
 ### 1.3 本真REST与hybrid风格
 
@@ -97,7 +97,7 @@ hybrid风格的最主流的用法是，使用GET方法获取资源，用POST方�
 
 ## 2. 认证机制
 
-![blog-post-rest-stateless-auth.png](../../static/images/general_knowledge/restful_api/blog-post-rest-stateless-auth.png)
+![blog-post-rest-stateless-auth.png](images/blog-post-rest-stateless-auth.png)
 
 由于RESTful风格的服务是无状态的，认证机制尤为重要。例如上文提到的员工工资，这应该是一个隐私资源，只有员工本人或其他少数有权限的人有资格看到，如果不通过权限认证机制对资源做一层限制，那么所有资源都以公开方式暴露出来，这是不合理的，也是很危险的。
 

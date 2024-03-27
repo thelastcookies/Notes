@@ -36,7 +36,7 @@
 
 余弦相似性通过测量两个向量的夹角的余弦值来度量它们之间的相似性。
 
-![cosine-similarity.png](../../static/images/ai/basis/cosine-similarity.png)
+![cosine-similarity.png](images/cosine-similarity.png)
 
 0度角的余弦值是1，而其他任何角度的余弦值都不大于1；并且其最小值是-1。从而两个向量之间的角度的余弦值确定两个向量是否大致指向相同的方向。两个向量有相同的指向时，余弦相似度的值为1；两个向量夹角为90°时，余弦相似度的值为0；两个向量指向完全相反的方向时，余弦相似度的值为-1。
 

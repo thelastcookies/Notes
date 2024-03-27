@@ -81,7 +81,7 @@ trusted-host = mirrors.aliyun.com
 
 在设置上面 pip 换源的前提下，配置 GitHub 加速。
 
-方法可以参考 [《github_acc.md》](../../utils/git/github_acc.md)
+方法可以参考 [《github_acc.md》](../../tools/git/github_acc.md)
 
 > 最佳实践：通过 GitHub 加速一劳永逸地解决这个问题！之前踩这个坑的时候看到网上很多人主张将每个库手动 clone 之后再 pip 安装，只能说极不优雅还容易出错，折腾的还是自己😅。
 ---
@@ -115,7 +115,7 @@ call webui.bat
 
 其中有 `sd-v1-1` 到 `sd-v1-5` 的模型下载（2023.04.23）。
 
-![sd--checkpoint-list](../../static/images/ai/stable_diffusion/sd__checkpoint_list.jpg)
+![sd--checkpoint-list](images/sd__checkpoint_list.jpg)
 
 
 或者可以选择直接点击这里下载： [v1-5-pruned.ckpt - 7.7GB](https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/v1-5-pruned.ckpt)

@@ -1,6 +1,6 @@
 # 约定式提交（Conventional Commits）
 
-![conventional-commits__banner.png](../../static/images/tools/git/conventional-commits__banner.png)
+![conventional-commits__banner.png](images/conventional-commits__banner.png)
 
 ## 什么是约定式提交？
 

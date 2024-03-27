@@ -1,6 +1,6 @@
 # XOR 异或运算
 
-![xor__banner.svg](../static/images/general_knowledge/xor__banner.svg)
+![xor__banner.svg](xor__banner.svg)
 
 ## 什么是异或运算
 
