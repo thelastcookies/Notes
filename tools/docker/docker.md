@@ -87,7 +87,8 @@ Docker Volumes 是用于在 Docker 容器和宿主机之间共享数据的一种
 由于容器创建后产生的数据是易失性的，在容器停止后会全部丢失，因此引入 Volumes 来将容器的数据持久化。Volumes
 允许将宿主机上的目录或文件挂载到容器中，使得容器中的数据能够持久化。
 
-允许多个容器共享同一个数据卷，并且数据卷中的数据能够在重新创建或者删除容器后仍保持不变。 数据卷可以在容器创建时动态创建和挂载，也可以事先创建并在容器运行时挂载到容器中。
+允许多个容器共享同一个数据卷，并且数据卷中的数据能够在重新创建或者删除容器后仍保持不变。
+数据卷可以在容器创建时动态创建和挂载，也可以事先创建并在容器运行时挂载到容器中。
 
 Docker 支持不同的数据卷驱动程序，用于将数据卷连接到不同的存储后端，如本地文件系统、网络存储、云存储等。
 
@@ -105,7 +106,8 @@ Dockerfile 通常以指定基础镜像开始构建过程。基础镜像是构建
 
 #### 指令（Instructions）
 
-Dockerfile 包含一系列指令，每个指令都会执行一个特定的操作。常见的指令包括FROM（指定基础镜像）、RUN（在镜像中执行命令）、COPY（复制文件到镜像中）、ADD（复制并解压文件到镜像中）、CMD（设置容器启动时要执行的命令）等。
+Dockerfile
+包含一系列指令，每个指令都会执行一个特定的操作。常见的指令包括FROM（指定基础镜像）、RUN（在镜像中执行命令）、COPY（复制文件到镜像中）、ADD（复制并解压文件到镜像中）、CMD（设置容器启动时要执行的命令）等。
 
 #### 工作目录（Working Directory）
 
@@ -135,17 +137,84 @@ build命令将其构建为Docker镜像，然后通过docker run命令启动容�
 
 ## 安装配置
 
-### 安装
+下面提供一些官方的安装文档，并详细说明在 `Linux（Debian）` 环境下的安装过程。
 
-- 官方文档：[Install On Mac](https://docs.docker.com/desktop/install/mac-install/)
-- 官方文档：[Install On Linux](https://docs.docker.com/desktop/install/linux-install/)
-- 官方文档：[Install On Windows](https://docs.docker.com/desktop/install/windows-install/)
+- [Install On Mac](https://docs.docker.com/desktop/install/mac-install/)
+- [Install On Linux](https://docs.docker.com/engine/install/)
+- [Install On Windows](https://docs.docker.com/desktop/install/windows-install/)
 
-#### Mac
+### Linux（Debian）下的安装
 
-#### Windows
+#### 操作系统要求
 
-请参考 [Docker](https://www.docker.com) 官方文档。
+安装 Docker 引擎，需要 64 位的 Debian 环境：
+
+- Debian Bookworm 12（stable）
+- Debian Bullseye 11（old-stable）
+
+#### 卸载旧版本
+
+在安装 Docker 引擎之前，需要卸载任何冲突的软件包。
+
+需要卸载的非官方软件包包括：
+
+- docker.io
+- docker-compose
+- docker-doc
+- podman-docker
+
+运行以下命令以卸载所有冲突的软件包：
+
+```shell
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
+```
+
+#### 安装方法
+
+根据需求，可以以不同的方式安装 Docker 引擎：
+
+- 安装 Docker Desktop for Linux；
+- 使用 apt 库进行安装；
+- 手动安装并手动管理升级；
+- 使用便捷脚本，仅建议用于测试和开发环境。
+
+#### 使用 apt 进行安装
+
+在新主机上首次安装 Docker 引擎之前，需要设置 Docker 的 apt 存储库。之后就可以使用 apt 安装和更新 Docker。
+
+##### 1. 设置 Docker 的 apt 库
+
+```shell
+# 添加 Docker 官方 GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# 为 apt 添加仓库
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+##### 2. 安装 Docker
+
+```shell
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+##### 3. 用 `hello-world` 镜像来验证安装结果
+
+```shell
+$ sudo docker run hello-world
+```
+
+这条指令会下载一个测试镜像并在容器中运行它。当容器运行时，它会打印一个确认消息然后退出。
+
+更多帮助请参考 [Docker](https://www.docker.com) 官方文档。
 
 ## 常用命令
 
@@ -158,3 +227,17 @@ build命令将其构建为Docker镜像，然后通过docker run命令启动容�
 ## Kubernetes
 
 https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html
+
+## 国内镜像源（DaoCloud）
+
+可以将原仓库的 url 替换为 DaoCloud 的 url。
+
+```text
+docker.io => docker.m.daocloud.io
+gcr.io => gcr.m.daocloud.io
+ghcr.io => ghcr.m.daocloud.io
+k8s.gcr.io => k8s-gcr.m.daocloud.io
+registry.k8s.io => k8s.m.daocloud.io
+quay.io => quay.m.daocloud.io
+```
+
