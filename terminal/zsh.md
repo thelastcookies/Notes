@@ -47,29 +47,27 @@ https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH
 ### 安装
 
 ```shell
-$ sudo apt install zsh
+sudo apt install zsh
 ```
 
 ### 查看版本
 
 ```shell
-$ zsh --version
+zsh --version
 ```
 
 ### 修改系统默认登录 Shell
 
 ```shell
-$ chsh -s $(which zsh)
+chsh -s $(which zsh)
 ```
 
-### 配置主题颜色
-
-`.zshrc`
+### 配置`.zshrc`
 
 在 `~` 目录下打开 `.zshrc` 文件（可能需要新建）。
 
 ```shell
-$ vim ~/.zshrc
+vim ~/.zshrc
 ```
 
 输入以下内容
@@ -86,8 +84,20 @@ autoload -U colors && colors
 # 配置终端提示符颜色
 PROMPT="%{$fg_bold[red]%}➜ %{$fg_bold[cyan]%}%m %{$fg_bold[green]%}%1~ %{$fg_bold[red]%}% %{$reset_color%}> "
 
+# 配置 ls 颜色 
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 # 配置常用别名
-alias p=pnpm
-alias ll=ls -l
-alias la=ls -a
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
 ```
