@@ -241,3 +241,85 @@ registry.k8s.io => k8s.m.daocloud.io
 quay.io => quay.m.daocloud.io
 ```
 
+## Docker - MySQL 部署
+
+### 拉取官方镜像
+
+拉取最新版 MySQL 镜像：
+
+```shell
+docker pull mysql 
+```
+
+或拉取指定版本：
+
+```shell
+docker pull mysql:5.7
+```
+
+### 检查是否拉取成功
+
+```
+sudo docker images
+```
+
+### 建立容器
+
+```shell
+sudo docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql
+```
+
+- –name：容器名，此处命名为 `mysql`
+- -p：端口映射，映射主机`3306`端口到容器的`3306`端口
+- -e：配置信息，配置 `mysql` 的 `root` 用户的登陆密码
+- -d：后台运行容器，保证在退出终端后容器继续运行
+
+如果要在建立容器时建立目录映射，则
+
+```shell
+sudo docker run --name mysql \
+-p 3306:3306 \
+-v /etc/docker/mysql/conf:/etc/mysql \
+-v /etc/docker/mysql/logs:/var/log/mysql \
+-v /etc/docker/mysql/data:/var/lib/mysql \
+-e MYSQL_ROOT_PASSWORD=123456 \
+-d mysql
+```
+
+- -v：主机和容器的目录映射关系
+- ":"：前为主机目录，之后为容器目录
+
+### 检查容器是否正确运行
+
+```shell
+docker container ls
+```
+
+可以看到容器ID，容器的源镜像，启动命令，创建时间，状态，端口映射信息，容器名字。
+
+### 连接 MySQL
+
+```shell
+sudo docker exec -it mysql bash
+mysql -uroot -p123456
+```
+
+### 如果无法访问到 MySQL
+
+如果你的容器运行正常，但是无法访问到MySQL，一般有以下几个可能的原因：
+
+#### 没有远程访问权限
+
+```shell
+mysql> grant all privileges on *.* to root@'%' identified by "password";
+mysql> flush privileges;
+```
+
+#### 防火墙阻拦
+
+```shell
+$ systemctl status firewalld
+$ firewall-cmd  --zone=public --add-port=3306/tcp -permanent
+$ firewall-cmd  --reload
+$ sudo systemctl stop firewalld
+```
