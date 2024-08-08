@@ -96,19 +96,22 @@ Conventional Commits 的格式通常包括了三个部分：类型、作用范�
 
 具体参数和描述见下表：
 
-| 参数       | 说明                       | 描述                                    |
-|----------|--------------------------|:--------------------------------------|
-| feat     | Features                 | 用于提交一个新增功能（这和语义化版本中的 MINOR 相对应）       |
-| fix      | Bug Fixes                | 用于 Bug 修复的提交 （这和语义化版本中的 PATCH 相对应）    |
-| build    | Builds                   | 用于修改项目构建系统，例如修改依赖库、外部接口或者升级 Node 版本等  |
-| chore    | Chores                   | 用于对非业务性代码进行修改，例如修改构建流程或者工具配置等         |
-| ci       | Continuous Integrations  | 用于修改持续集成流程，例如修改 Travis、Jenkins 等工作流配置 |
-| docs     | Documentation            | 用于修改文档，例如修改 README 文件、API 文档等         |
-| style    | Styles                   | 用于修改代码的样式，例如调整缩进、空格、空行等               |
-| refactor | Code Refactoring         | 用于重构代码，例如修改代码结构、变量名、函数名等但不修改功能逻辑      |
-| perf     | Performance Improvements | 用于优化性能，例如提升代码的性能、减少内存占用等              |
-| test     | Tests                    | 用于修改测试用例，例如添加、删除、修改代码的测试用例等           |
-| revert*  | Reverting                | 用于恢复代码时                               |
+| 参数       | 说明                       | 描述                                                        |
+|----------|--------------------------|:----------------------------------------------------------|
+| init     | Initial Commit           | 用于初始化提交                                                   |
+| feat     | Features                 | 用于提交新增功能（这和语义化版本中的 MINOR 相对应）                             |
+| fix      | Bug Fixes                | 用于提交消缺和 Bug 修复 （这和语义化版本中的 PATCH 相对应）                      |
+| build    | Builds                   | 用于修改项目构建系统，例如修改依赖库、外部接口或者升级 Node 版本等                      |
+| chore    | Chores                   | 用于对非业务性代码进行修改，例如修改构建流程或者工具配置等杂项                           |
+| ci       | Continuous Integrations  | 用于修改持续集成流程，例如修改 GitHub Actions、Travis、Jenkins 等工作流配置      |
+| docs     | Documentation            | 用于修改文档，例如修改 README 文件、API 文档等                             |
+| style    | Styles                   | 用于修改样式表语言，以及修改代码样式，例如调整 CSS、Less、UnoCSS 等，以及调整代码缩进、空格、空行等 |
+| refactor | Code Refactoring         | 用于重构代码，例如修改代码结构、变量名、函数名等但不修改功能逻辑                          |
+| perf     | Performance Improvements | 用于优化性能，例如提升代码的性能、减少内存占用等                                  |
+| test     | Tests                    | 用于修改测试用例，例如添加、删除、修改代码的测试用例等                               |
+| revert*  | Reverting                | 用于恢复代码                                                    |
+| type     | Type Declaration         | 用于修改类型声明                                                  |
+| wip      | Work In Progress         | 用于未完成工作前的临时提交                                             |
 
 #### feat
 
