@@ -111,7 +111,7 @@ Conventional Commits 的格式通常包括了三个部分：类型、作用范�
 | test     | Tests                    | 用于修改测试用例，例如添加、删除、修改代码的测试用例等                               |
 | revert*  | Reverting                | 用于恢复代码                                                    |
 | type     | Type Declaration         | 用于修改类型声明                                                  |
-| wip      | Work In Progress         | 用于未完成工作前的临时提交                                             |
+| wip      | Work In Progress         | 用于未完全完成前临时提交                                              |
 
 #### feat
 
