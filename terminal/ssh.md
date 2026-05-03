@@ -436,6 +436,58 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAvpB4lUbAaEbh9u6HLig7amsfywD4fqSZq2ikACIUBn3G
 
 详见：[公钥上传](#公钥上传)
 
+## 修改默认端口
+
+修改 SSH 的默认端口（22）是提升服务器安全性的一项基础操作，可以有效减少针对默认端口的自动化暴力破解攻击。
+
+以下是详细的操作步骤：
+
+### 1. 修改配置文件
+   SSH 的配置文件位于 `/etc/ssh/sshd_config`。
+
+使用编辑器（如 vi 或 vim）打开文件：
+
+```shell
+sudo vi /etc/ssh/sshd_config
+```
+找到 #Port 22 这一行。
+
+去掉前面的 # 注释符，并在下方添加一行设置的新端口（建议选择 1024-65535 之间的闲置端口，例如 2222）：
+
+```
+Port 22
+Port 2222
+```
+
+> 注意： 初次修改时建议保留 22 端口。等新端口连接测试成功后，再删除 Port 22。这样可以防止配置错误导致自己被锁在服务器外。
+
+### 2. 配置防火墙（可选）
+
+如果服务器有防火墙，那在重启 SSH 服务之前，必须确保防火墙已放行新端口，否则会导致无法连接。
+
+如果使用 `ufw` (Ubuntu/Debian):
+
+```shell
+sudo ufw allow 2222/tcp
+sudo ufw reload
+```
+
+如果使用 `firewalld` (CentOS/RHEL):
+
+```shell
+sudo firewall-cmd --permanent --add-port=2222/tcp
+sudo firewall-cmd --reload
+```
+
+### 3. 开放云服务器端口（可选）
+
+### 4. 重启 SSH 服务
+   使配置生效：
+
+```shell
+sudo systemctl restart sshd
+```
+
 ## 示例一——从本地通过 SSH 密钥登录服务器
 
 ### `ssh-kengen` 生成密钥对
