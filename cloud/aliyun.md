@@ -79,23 +79,46 @@ sudo systemctl restart docker
 
 # Nginx 安装配置
 
-使用 Docker 安装 Nginx（更干净、好迁移）如果你希望保持宿主机环境整洁，可以使用 Docker：Bash
+使用 apt 安装 Nginx
 
-## 1. 创建映射目录（用于存放配置文件和网页）
-mkdir -p ~/nginx/html ~/nginx/conf.d
-
-## 2. 启动容器
+## 1. 更新软件包索引
 ```shell
-docker run -d \
-  --name nginx \
-  --restart=unless-stopped \
-  -p 80:80 \
-  -v ~/nginx/html:/usr/share/nginx/html:ro \
-  -v ~/nginx/conf.d:/etc/nginx/conf.d:ro \
-  nginx:latest
+sudo apt update
 ```
 
-## 3. 配置虚拟主机（站点配置）
+## 2. 安装 Nginx
+
+直接使用 apt 安装 Nginx 包：
+
+```shell
+sudo apt install nginx -y
+```
+-y 会自动确认安装，若想手动确认可去掉该参数。
+
+## 3. 启动 Nginx 服务
+
+使用 systemctl 启动服务：
+
+```shell
+sudo systemctl start nginx
+```
+检查运行状态，确保没有错误：
+
+```shell
+sudo systemctl status nginx
+```
+
+如果看到 active (running) 字样，说明启动成功。
+
+## 4. 设置开机自启（可选但推荐）
+
+让 Nginx 在系统重启后自动运行：
+
+```shell
+sudo systemctl enable nginx
+```
+
+## 5. 配置虚拟主机（站点配置）
 不要直接修改 nginx.conf，推荐为每个域名创建一个独立的配置文件。
 
 创建配置文件：
@@ -129,7 +152,7 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## 4. 关键步骤：开放端口
+## 6. 关键步骤：开放端口
 阿里云安全组开放端口无论用哪种方式，必须在阿里云控制台开放端口，否则外部无法访问：
   1. 登录 阿里云 ECS 控制台。
   2. 点击左侧 安全组 -> 点击当前实例使用的安全组。
@@ -137,7 +160,7 @@ sudo systemctl reload nginx
   4. 勾选 HTTP (80) 和 HTTPS (443)。
   5. 点击确定。
 
-## 5. 进阶：HTTPS
+## 7. 进阶：HTTPS
 直接通过 IP 地址实现 HTTPS，自签名证书（Self-Signed Certificate） 是最直接的方案。
 它的本质是：你自己既是“申请人”，也是“发证机关”。虽然浏览器不认识你（会报警告），但它依然能提供加密传输功能。
 1. 生成自签名证书在 Debian 终端执行以下命令。我们会使用 openssl 工具生成一个有效期为 10 年（3650天）的证书。
@@ -150,7 +173,7 @@ sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 
 执行后会有交互提示，关键点如下：
 - Common Name (e.g. server FQDN or YOUR name): 这一项最重要，填入你的公网 IP 地址。
-- - 其他项（Country, State, Locality等）可以直接按回车跳过，或者随便填（例如：CN, Shanghai, MyProject）。
+- 其他项（Country, State, Locality等）可以直接按回车跳过，或者随便填（例如：CN, Shanghai, MyProject）。
 
 2. 配置 Nginx 使用该证书
 
@@ -179,9 +202,9 @@ server_name 你的公网IP; # 这里填入你的阿里云 IP
 
 # (可选) 将 80 端口的流量重定向到 443
 server {
-listen 80;
-server_name 你的公网IP;
-return 301 https://$host$request_uri;
+  listen 80;
+  server_name 你的公网IP;
+  return 301 https://$host$request_uri;
 }
 ```
 
