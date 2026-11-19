@@ -50,9 +50,9 @@ server {
     index index.html index.htm;
 
     location / {
-        # 请求的是已存在的目录且未带斜杠时，自动补斜杠并保留参数
+        # 请求的是已存在的目录且未带斜杠时，自动补斜杠（rewrite 默认保留参数）
         if (-d $request_filename) {
-            return 301 https://$host$uri/$is_args$args;
+            rewrite ^(.*[^/])$ https://$host$1/ permanent;
         }
         try_files $uri $uri/ =404;
     }
@@ -95,9 +95,9 @@ server_name your_domain.com; # 替换成你的域名或公网IP
     index index.html;
 
     location / {
-        # 请求的是已存在的目录且未带斜杠时，自动补斜杠并保留参数
+        # 请求的是已存在的目录且未带斜杠时，自动补斜杠（rewrite 默认保留参数）
         if (-d $request_filename) {
-            return 301 https://$host$uri/$is_args$args;
+            rewrite ^(.*[^/])$ https://$host$1/ permanent;
         }
         try_files $uri $uri/ =404;
     }
