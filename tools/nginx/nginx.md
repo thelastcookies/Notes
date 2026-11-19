@@ -13,10 +13,15 @@ mkdir -p ~/nginx/html ~/nginx/conf.d
 ```shell
 docker run -d \
   --name nginx \
+  --network host \
   --restart=unless-stopped \
   -p 80:80 \
-  -v ~/nginx/html:/usr/share/nginx/html:ro \
-  -v ~/nginx/conf.d:/etc/nginx/conf.d:ro \
+  -p 443:443 \ # https
+  -v /path/to/your.crt:/path/to/your.crt:ro \ # https 签名证书
+  -v /path/to/your.key:/path/to/your.key:ro \ # https 签名证书
+  -v /path/to/your/nginx/html:/usr/share/nginx/html:ro \  # 静态文件地址
+  -v /path/to/your/nginx/conf.d:/etc/nginx/conf.d:ro \  # 配置文件
+  -v /path/to/your/nginx/snippets:/etc/nginx/snippets:ro \  # 公共 proxy 配置文件
   nginx:latest
 ```
 
