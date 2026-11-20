@@ -81,38 +81,79 @@ sudo docker restart nginx
 
 ## 其他
 
-### Nginx ssl 配置示例：
+### 一个启用 https 静态资源和 Web 自动挂载的配置示例：
 ```
-server {
-listen 443 ssl;
-listen [::]:443 ssl;
-server_name your_domain.com; # 替换成你的域名或公网IP
+# ============================================================
+# SPA 回落目标：取路径第一段拼出该应用的入口
+# map 在使用时求值，无时序问题
+# default 给 /index.html 作防御性兜底
+# ============================================================
+map $uri $spa_index {
+    ~^/(?<seg>[^/]+)  /$seg/index.html;
+    default           /index.html;
+}
 
-    # 指向生成的证书和私钥
-    ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+
+# HTTPS 主 server
+server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+    http2 on;
+
+    server_name your.domain.com;
+
+    # 请求头等配置
+    include /etc/nginx/snippets/proxy.conf;
+
+    # 证书和私钥
+    ssl_certificate     /etc/ssl/certs/nginx-selfsigned.crt;
     ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
 
-    # 推荐的 SSL 优化配置
+    # SSL 优化
     ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_ciphers HIGH:!aNULL:!MD5;   # 仅对 TLS1.2 生效；TLS1.3 由默认 suite 控制
+    ssl_prefer_server_ciphers off;
+    ssl_session_cache   shared:SSL:10m;
+    ssl_session_timeout 1d;
 
-    root /var/www/html;
-    index index.html;
+    root  /home/nginx;
+    index index.html index.htm index.nginx-debian.html;
 
+    # 错误页
+    error_page 403 /error/403.html;
+    error_page 404 /error/404.html;
+    error_page 500 /error/500.html;
+    error_page 503 /error/503.html;
+
+    # ---- API 反向代理 ----
+    # sample api
+    location /sample/api/ {
+        proxy_pass http://127.0.0.1:8190/oidc/;
+    }
+
+    # ---- 前端静态 + SPA 兜底 ----
     location / {
-        # 请求的是已存在的目录且未带斜杠时，自动补斜杠（rewrite 默认保留参数）
+        # 请求真实文件目录未带斜杠时 301 补斜杠
         if (-d $request_filename) {
-            rewrite ^(.*[^/])$ https://$host$1/ permanent;
+            rewrite ^(.*[^/])$ https://$server_name$1/ permanent;
         }
-        try_files $uri $uri/ =404;
+        # 未命中则进入 SPA 兜底
+        try_files $uri $uri/ @spa;
+    }
+
+    # ---- SPA 兜底 ----
+    location @spa {
+        try_files $spa_index =404;
     }
 }
 
-# (可选) 将 80 端口的流量重定向到 443
+
+# HTTP -> HTTPS
 server {
-listen 80;
-server_name 你的公网IP;
-return 301 https://$host$request_uri;
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name your.domain.com;
+    return 301 https://$server_name$request_uri;
 }
 ```
 
